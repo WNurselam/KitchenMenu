@@ -72,3 +72,29 @@ const menu = [
         desc: `Red bean paste dessert, serving with honey.`,
     },
 ];
+
+const btnContainer = document.querySelector(".btn-container");  
+
+
+// Button oluşturma
+const createButton = (btn) => {
+    let button = `<button type="button" id="${btn}" class="btn btn-outline-danger btn-item">${btn}</button>`;
+
+    return button;
+};
+
+//Her bir yemek çeşidi için button oluşturma ve onları ".btn-container" adlı classa altında listeleme
+const buttonList = () => {
+    btnContainer.innerHTML =
+        createButton("All") +
+        " " +
+        createButton("Korea") +
+        " " +
+        createButton("Japan") +
+        " " +
+        createButton("China");
+};
+buttonList(); 
+
+
+
