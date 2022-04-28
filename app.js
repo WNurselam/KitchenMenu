@@ -73,7 +73,8 @@ const menu = [
     },
 ];
 
-const btnContainer = document.querySelector(".btn-container");  
+const btnContainer = document.querySelector(".btn-container");  //Buttonların listelenmesi için boş bir container
+const menuContainer = document.querySelector(".section-center");// Yemeklerin listelenmesi için boş bir section
 
 
 // Button oluşturma
@@ -95,6 +96,81 @@ const buttonList = () => {
         createButton("China");
 };
 buttonList(); 
+
+// Üstde oluşturduğumuz buttonları burada tetiklenip gerekli verileri getirmesi için function atıyoruz.
+ document.querySelector('#All').addEventListener("click",allFoods);
+ document.querySelector('#Korea').addEventListener("click",koreanFoods)
+ document.querySelector('#Japan').addEventListener("click",japanFoods)
+ document.querySelector('#China').addEventListener("click",chinaFoods)
+
+
+// Yemekler için card yapısı oluşturma
+function foodCard(food) {
+    let item = `
+    <div class="menu-items col-lg-6 col-sm-12">
+              <img src="${food.img}" alt="${food.title}" ramen="" class="photo">
+              <div class="menu-info">
+                <div class="menu-title">
+                  <h4>${food.title} Ramen</h4>
+                  <h4 class="price">${food.price}</h4>
+                </div>
+                <div class="menu-text">
+                  ${food.desc}
+                </div>
+              </div>
+            </div>
+    `;
+    return item;
+}
+
+// Tüm yemeklerinin listelenmesi için çalıştırılacak olan fonksiyon
+function allFoods(){
+    //console.log("tıklandı")
+   let tabMenu = "";
+   menu.map((e)=>{
+
+    tabMenu+=foodCard(e);
+   });
+    menuContainer.innerHTML = tabMenu;
+}
+
+//Korean yemeklerinin listelenmesi için çalıştırılacak olan fonksiyon
+function koreanFoods(){
+    let tabMenu = "";
+    menu.map((e) => {
+        if (e.category == "Korea") {
+            tabMenu += foodCard(e);
+        }
+    });
+    menuContainer.innerHTML = tabMenu;
+
+}
+
+//Japanese yemeklerinin listelenmesi için çalıştırılacak olan fonksiyon
+function japanFoods(){
+
+    let tabMenu = "";
+    menu.map((e) => {
+        if (e.category == "Japan") {
+            tabMenu += foodCard(e);
+        }
+    });
+    menuContainer.innerHTML = tabMenu;
+}
+
+//China yemeklerinin listelenmesi için çalıştırılacak olan fonksiyon
+function chinaFoods(){
+    let tabMenu = "";
+    menu.map((e) => {
+        if (e.category == "China") {
+            tabMenu += foodCard(e);
+        }
+    });
+    menuContainer.innerHTML = tabMenu;
+
+}
+
+
 
 
 
